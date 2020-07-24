@@ -1,6 +1,8 @@
 ### pulloutXAMLGui
 A pullout style XAML gui. Uses Dropshadow, no external extentions required, also is using the Tweening with <DoubleAnimation.EasingFunction>.
 
+### Animation Show
+![](https://i.imgur.com/Bjex0aa.gif)
 
 [Install Visual Studio Basic 2019](https://visualstudio.microsoft.com/downloads/)
 
@@ -12,6 +14,3 @@ A pullout style XAML gui. Uses Dropshadow, no external extentions required, also
 
 ###### With Click
 ![](https://i.imgur.com/sgK4NCy.png)
-
-### Animation Show
-~[](https://i.imgur.com/Bjex0aa.gif)
