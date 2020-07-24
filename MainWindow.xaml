@@ -1,0 +1,164 @@
+<Window x:Class="Antivirus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Antivirus"
+        mc:Ignorable="d"
+        Title="Antivirus" Height="330" Width="600" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+
+
+    <Window.Resources>
+        <ImageBrush x:Key="stack"
+                    ImageSource="Assets/stack.png"/>
+
+        <Style x:Key="tb_style" TargetType="{x:Type ToggleButton}">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource stack}"/>
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource stack}"/>
+
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="true">
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource stack}"/>
+
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource stack}"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+
+    </Window.Resources>
+
+
+    <Grid>
+
+        <!--Background Color-->
+
+        <Grid Background="#394042">
+
+
+
+
+            <!--Navigation Panel-->
+
+            <Grid x:Name="nav_pnl"
+                  HorizontalAlignment="Left"
+                  Width="55"
+                  Background="#2E333A">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.3" BlurRadius="20" Direction="360" RenderingBias="Quality"/>
+                </Grid.Effect>
+
+                <StackPanel x:Name="st_pnl">
+
+                    <!--Toggle Menu-->
+
+                    <Grid Height="70">
+
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="0"
+                                   FontFamily="/Assets/Ubuntu-Light.ttf"
+                                   Margin="55,-20,0,0"
+                                   Text="Main Menu"
+                                   Foreground="White"
+                                   FontSize="22"
+                                   Background="Transparent"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center">
+                        </TextBlock>
+
+
+                        <!--Toggle Button-->
+
+                        <ToggleButton x:Name="Tg_Btn"
+                                      Grid.Column="0"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      Margin="12,7,0,21"
+                                      Height="30"
+                                      Width="30"
+                                      BorderThickness="0"
+                                      Style="{StaticResource tb_style}">
+
+                            <!--Toggle Button Image Toggle Default Background Image-->
+
+                            <ToggleButton.Background>
+                                <ImageBrush ImageSource="Assets/stack.png"
+                                            Stretch="Fill"></ImageBrush>
+                            </ToggleButton.Background>
+
+                            <!--Toggle Triggers-->
+
+                            <ToggleButton.Triggers>
+
+                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                    <BeginStoryboard>
+                                        <Storyboard x:Name="HideStackPanel">
+                                            <DoubleAnimation From="230" To="55" Duration="0:0:0.2" Storyboard.TargetName="nav_pnl" Storyboard.TargetProperty="Width">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase Exponent="7" EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+
+                                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                    <BeginStoryboard>
+
+                                        <Storyboard x:Name="ShowStackPanel">
+                                            <DoubleAnimation From="55" To="230" Duration="0:0:0.2" Storyboard.TargetName="nav_pnl" Storyboard.TargetProperty="Width">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase Exponent="7" EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+
+                                    </BeginStoryboard>
+                                </EventTrigger>
+
+                            </ToggleButton.Triggers>
+
+                        </ToggleButton>
+
+                    </Grid>
+                </StackPanel>
+
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>
